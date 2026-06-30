@@ -14,6 +14,7 @@
             <xsl:for-each select="//oai:record/oai:metadata/oai:document-export/oai:documents/oai:document">
                 <xsl:variable name="currentDate" select="format-date(current-date(), '[Y01][M01][D01]')"/>
                 <xsl:variable name="pubDate" select="substring(./oai:publication-date, 1, 4)"/>
+                <xsl:variable name="campusMonth" select="substring(./oai:publication, 5, 7)"/>
                 <xsl:variable name="lang" select="'eng'"/>
                 <marc:record>
                     <!-- leader -->
@@ -327,11 +328,22 @@
         </marc:datafield>
     </xsl:template>
     
-    <xsl:template name="f506">
-        <marc:datafield tag="506" ind1="0" ind2=" ">
-            <marc:subfield code="f">Unrestricted online access</marc:subfield>
-            <marc:subfield code="2">star</marc:subfield>
-        </marc:datafield>
+    <xsl:template name="f506" expand-text="yes">
+        <xsl:variable name="campusYear" select="substring(./oai:publication-date, 1, 4)"/>
+        <xsl:variable name="campusMonth" select="substring(./oai:publication-date, 6, 2)"/>
+        <xsl:choose>
+            <xsl:when test="contains(oai:document-type, 'campus')">
+                <marc:datafield tag="506" ind1="1" ind2=" ">
+                    <marc:subfield code="a">WVU campus access only until {concat(string(number($campusYear)+2), '-', $campusMonth)}.</marc:subfield>
+                </marc:datafield>
+            </xsl:when>
+            <xsl:otherwise>
+                <marc:datafield tag="506" ind1="0" ind2=" ">
+                    <marc:subfield code="f">Unrestricted online access</marc:subfield>
+                    <marc:subfield code="2">star</marc:subfield>
+                </marc:datafield>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template name="f520">
