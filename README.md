@@ -8,5 +8,5 @@ The script is set up to access WVU's repository via OAI and retrieve Bepress doc
    1. Editing the XSLT
    1. Editing the Python notebook
 1. [Running the script](https://github.com/wvulibraries/KARM-metadata-etd2marc/wiki/Running-the-script)
-   1. Dependencies
+   1. Requirements
    1. Suggested workflow
