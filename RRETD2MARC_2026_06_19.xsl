@@ -49,9 +49,9 @@
                  
                     <!-- 040 -->
                     <marc:datafield tag="040" ind1=" " ind2=" ">
-                        <marc:subfield code="a">WVU</marc:subfield>
+                        <marc:subfield code="a"></marc:subfield>
                         <marc:subfield code="b">eng</marc:subfield>
-                        <marc:subfield code="c">WVU</marc:subfield>
+                        <marc:subfield code="c"></marc:subfield>
                     </marc:datafield>
                     
                     <!-- 100 -->
